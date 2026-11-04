@@ -1,0 +1,532 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REDZ HUB KEY SYSTEM</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --red: #ff2020;
+    --darkred: #8d0000;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #050505;
+    color: white;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+/* BACKGROUND */
+
+.background {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.glow {
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: #ff0000;
+    filter: blur(180px);
+    opacity: .16;
+    animation: glowMove 9s ease-in-out infinite alternate;
+}
+
+.glow.one {
+    top: -230px;
+    left: -100px;
+}
+
+.glow.two {
+    right: -200px;
+    bottom: -230px;
+    animation-delay: -4s;
+}
+
+@keyframes glowMove {
+    to {
+        transform: translate(100px,100px) scale(1.3);
+        opacity: .27;
+    }
+}
+
+/* FALLING PARTICLES */
+
+#rain {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.drop {
+    position: absolute;
+    top: -20px;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #ff2929;
+    box-shadow: 0 0 8px #ff0000, 0 0 15px #ff2020;
+    animation: falling linear infinite;
+}
+
+@keyframes falling {
+    0% {
+        transform: translate3d(0,-20px,0);
+        opacity: 0;
+    }
+    10% { opacity: 1; }
+    90% { opacity: .8; }
+    100% {
+        transform: translate3d(35px,110vh,0);
+        opacity: 0;
+    }
+}
+
+/* FLOATING LIGHTS */
+
+.light {
+    position: fixed;
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg,transparent,#ff3030,transparent);
+    filter: drop-shadow(0 0 7px red);
+    opacity: .6;
+    animation: lightMove 7s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes lightMove {
+    0% {
+        transform: translateX(-150px) rotate(-25deg);
+    }
+    100% {
+        transform: translateX(110vw) rotate(-25deg);
+    }
+}
+
+/* MAIN CARD */
+
+.container {
+    position: relative;
+    z-index: 5;
+    width: 91%;
+    max-width: 445px;
+    padding: 36px 27px;
+    text-align: center;
+    border-radius: 26px;
+    background: rgba(13,13,13,.91);
+    backdrop-filter: blur(22px);
+    border: 1px solid rgba(255,35,35,.35);
+    box-shadow:
+        0 0 40px rgba(255,0,0,.13),
+        0 20px 80px rgba(0,0,0,.6),
+        inset 0 0 30px rgba(255,0,0,.035);
+    animation: appear 1s ease;
+    overflow: hidden;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(35px) scale(.94);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 70%;
+    height: 2px;
+    background: linear-gradient(90deg,transparent,#ff3030,white,transparent);
+    box-shadow: 0 0 15px red;
+    animation: borderLight 4s linear infinite;
+}
+
+@keyframes borderLight {
+    to { left: 150%; }
+}
+
+.container::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+        115deg,
+        transparent 35%,
+        rgba(255,255,255,.035) 50%,
+        transparent 65%
+    );
+    transform: translateX(-120%);
+    animation: shine 8s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes shine {
+    50%,100% { transform: translateX(120%); }
+}
+
+/* RZ LOGO */
+
+.logo-area {
+    width: 116px;
+    height: 116px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 22px;
+}
+
+.ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: #ff2525;
+    border-bottom-color: #790000;
+    box-shadow: 0 0 15px rgba(255,0,0,.4);
+    animation: rotate 4s linear infinite;
+}
+
+.ring.two {
+    inset: 9px;
+    border-top-color: white;
+    border-bottom-color: red;
+    opacity: .55;
+    animation-direction: reverse;
+    animation-duration: 6s;
+}
+
+@keyframes rotate {
+    to { transform: rotate(360deg); }
+}
+
+.logo {
+    width: 78px;
+    height: 78px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 22px;
+    background: linear-gradient(145deg,#ff3434,#a00000 50%,#170000);
+    border: 1px solid #ff5555;
+    box-shadow:
+        0 0 20px rgba(255,0,0,.6),
+        inset 0 0 15px rgba(255,255,255,.15);
+    overflow: hidden;
+    animation: logoPulse 3s ease-in-out infinite;
+}
+
+.logo::after {
+    content: "";
+    position: absolute;
+    inset: -50%;
+    background: linear-gradient(
+        110deg,
+        transparent 40%,
+        rgba(255,255,255,.6) 50%,
+        transparent 60%
+    );
+    animation: logoShine 3s infinite;
+}
+
+.logo span {
+    z-index: 2;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 30px;
+    font-weight: 900;
+    font-style: italic;
+    letter-spacing: -4px;
+    margin-right: 4px;
+    text-shadow: 0 0 10px red, 0 0 20px #ff3333;
+}
+
+@keyframes logoPulse {
+    50% { box-shadow: 0 0 40px rgba(255,0,0,.8); }
+}
+
+@keyframes logoShine {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100%); }
+}
+
+/* TITLE */
+
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(27px,8vw,35px);
+    font-weight: 900;
+    letter-spacing: 3px;
+    background: linear-gradient(
+        180deg,
+        white,
+        #ff7777,
+        #ff1515,
+        #700000
+    );
+    background-size: 100% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 12px rgba(255,0,0,.4));
+    animation: titleGlow 3s infinite alternate;
+}
+
+@keyframes titleGlow {
+    to { background-position: 0 100%; }
+}
+
+.subtitle {
+    margin-top: 10px;
+    color: #929292;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+/* STATUS */
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 23px;
+    padding: 9px 18px;
+    border-radius: 30px;
+    border: 1px solid rgba(255,30,30,.4);
+    background: rgba(255,0,0,.08);
+    color: #ff5757;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ff2929;
+    box-shadow: 0 0 12px red;
+    animation: blink 1.2s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: .2; transform: scale(.7); }
+}
+
+/* KEY AREA - NO ROTATING SHAPES */
+
+.key-label {
+    text-align: left;
+    margin: 29px 0 11px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #ddd;
+}
+
+.key-box {
+    position: relative;
+    padding: 18px 14px;
+    border-radius: 13px;
+    border: 1px solid #413030;
+    background: linear-gradient(110deg,#090909,#1b0909);
+    color: white;
+    font-size: 12px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+    text-align: left;
+    box-shadow: inset 0 0 18px rgba(255,0,0,.04);
+    transition: .35s;
+}
+
+.key-box:hover {
+    border-color: #ff3333;
+    box-shadow: 0 0 20px rgba(255,0,0,.17);
+}
+
+/* COPY BUTTON */
+
+.copy {
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+    padding: 17px;
+    border: 1px solid #ff4b4b;
+    border-radius: 13px;
+    background: linear-gradient(100deg,#ff2929,#970000,#ff2929);
+    background-size: 200%;
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(255,0,0,.25);
+    transition: .3s;
+    animation: buttonMove 4s linear infinite;
+}
+
+@keyframes buttonMove {
+    to { background-position: 200%; }
+}
+
+.copy::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -100%;
+    width: 45%;
+    height: 200%;
+    transform: rotate(25deg);
+    background: rgba(255,255,255,.35);
+    transition: .6s;
+}
+
+.copy:hover::before {
+    left: 150%;
+}
+
+.copy:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 35px rgba(255,0,0,.5);
+}
+
+.copy:active {
+    transform: scale(.96);
+}
+
+#message {
+    margin-top: 14px;
+    min-height: 20px;
+    color: #ff5555;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.footer {
+    margin-top: 25px;
+    padding-top: 18px;
+    border-top: 1px solid #302020;
+    color: #666;
+    font-size: 10px;
+    letter-spacing: 3px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="background">
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+</div>
+
+<div id="rain"></div>
+
+<div class="light" style="top:20%;animation-delay:0s"></div>
+<div class="light" style="top:70%;animation-delay:3s"></div>
+<div class="light" style="top:45%;animation-delay:5s"></div>
+
+<div class="container">
+
+    <div class="logo-area">
+        <div class="ring"></div>
+        <div class="ring two"></div>
+
+        <div class="logo">
+            <span>RZ</span>
+        </div>
+    </div>
+
+    <h1>REDZ HUB</h1>
+    <p class="subtitle">PREMIUM KEY SYSTEM</p>
+
+    <div class="status">
+        <span class="dot"></span>
+        KEY AVAILABLE
+    </div>
+
+    <div class="key-label">YOUR PERSONAL KEY</div>
+
+    <div class="key-box" id="key">
+        RedzHubKeyKsjwoeoKalwoiwjwLaouwneneuIbwiso
+    </div>
+
+    <button class="copy" onclick="copyKey()">
+        ✦ COPY KEY ✦
+    </button>
+
+    <div id="message"></div>
+
+    <div class="footer">
+        REDZ HUB © 2026
+    </div>
+
+</div>
+
+<script>
+const key = "RedzHubKeyKsjwoeoKalwoiwjwLaouwneneuIbwiso";
+
+// COPY KEY
+async function copyKey() {
+    const message = document.getElementById("message");
+
+    try {
+        await navigator.clipboard.writeText(key);
+        message.textContent = "✓ KEY COPIED SUCCESSFULLY!";
+    } catch (error) {
+        message.textContent = "COPY FAILED - COPY MANUALLY";
+    }
+}
+
+// FALLING RED PARTICLES
+const rain = document.getElementById("rain");
+
+for (let i = 0; i < 100; i++) {
+    const particle = document.createElement("span");
+
+    particle.className = "drop";
+
+    const size = Math.random() * 3 + 1;
+
+    particle.style.width = size + "px";
+    particle.style.height = size + "px";
+    particle.style.left = Math.random() * 100 + "%";
+    particle.style.animationDuration = (4 + Math.random() * 9) + "s";
+    particle.style.animationDelay = Math.random() * 10 + "s";
+    particle.style.opacity = Math.random();
+
+    rain.appendChild(particle);
+}
+</script>
+
+</body>
+</html>
